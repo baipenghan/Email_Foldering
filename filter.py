@@ -73,7 +73,5 @@ def filter(fname):
     
     print word_dic
     
-    
-
-    
-filter('/Users/taurus/Documents/CPSC540/preschedule/1')
+if __name__ == "__main__":
+    filter('/Users/taurus/Documents/CPSC540/preschedule/1')

@@ -15,6 +15,10 @@ def add_dict(pair, dic, wnl):
             word = wnl.lemmatize(pair[0], 'v').lower()
         elif pair[1].startswith('N'):
             word = wnl.lemmatize(pair[0]).lower()
+        elif pair[1].startswith('J'):
+            word = wnl.lemmatize(pair[0], 'a').lower()
+        elif pair[1].startswith('R'):
+            word = wnl.lemmatize(pair[0], 'r').lower()
         else:
             word = pair[0].lower()
         if word in dic:
@@ -22,44 +26,15 @@ def add_dict(pair, dic, wnl):
         else:
             dic[word] = 1
         
-def filter(fname):
-    f = open(fname, 'r')
-    
+def filter(content):
     wnl = WordNetLemmatizer()
-    final_tuple = []
     word_dic = dict()
-    subject = ''
     tagged = []
-    while True:
-        line = f.readline()
-        if not line:
-            break
-        line = line.strip()
-        if line.startswith('Subject'):
-            start_index = len('Subject: ')
-            subject = line[start_index:]
-        if line.startswith('X-FileName'):
-            break
     
-    #Parse Subject
-    
-    subject_tokens = nltk.word_tokenize(subject)
-    subject_tagged = nltk.pos_tag(subject_tokens)
+    tokens = nltk.word_tokenize(content)
+    tagged = nltk.pos_tag(tokens)
     for pair in subject_tagged:
         add_dict(pair, word_dic, wnl)
-    
-    
-    #Parse Body
-    body = f.readlines()
-    
-    for sentence in body:
-        #NLTK
-        tokens = nltk.word_tokenize(sentence)
-        tagged += nltk.pos_tag(tokens)
-    
-    for pair in tagged:
-        add_dict(pair, word_dic, wnl)
-                
     
    
     '''

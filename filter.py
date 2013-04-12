@@ -6,7 +6,7 @@ one_hundred = ['the', 'of', 'and', 'a', 'to', 'in', 'is', 'you', 'that', 'it', '
 one_hundred = set(one_hundred)
 taggers = ['ABL', 'ABN', 'ABX', 'AP', 'CD', 'EX', 'FW', 'JJ', 'JJR', 'JJS', 'JJT', 'NC', 'NN', 'NN$', 'NNS', 'NNS$', 'NP', 'NP$', 'NPS', 'NPS$', 'NR', 'OD', 'PN', 'RB', 'RBR', 'RBT', 'RN', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 taggers = set(taggers)
-punctuation = '.?!,#*():;\'\"'
+punctuation = '.?!,#*():;\'\"\\'
 
 
 def add_dict(pair, dic, wnl):
@@ -33,7 +33,7 @@ def filter(content):
     
     tokens = nltk.word_tokenize(content)
     tagged = nltk.pos_tag(tokens)
-    for pair in subject_tagged:
+    for pair in tagged:
         add_dict(pair, word_dic, wnl)
     
    

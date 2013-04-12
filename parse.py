@@ -1,6 +1,7 @@
 import email
 from datetime import datetime
 import os
+import filter
 from collections import namedtuple
 
 # root path
@@ -78,8 +79,6 @@ def get_msg_info_user (root):
             time_list = list(email.utils.parsedate_tz(date))
             pdt_to_pst(time_list)
             time_list = time_list[:-4]
-            #print('==============================')
-            print(type(msg['Subject']))
             m = Msg(time_list, msg['From'], msg['Subject'], msg['X-Folder'], msg.get_payload())
             msg_array.append(m)
 
@@ -132,7 +131,10 @@ def get_msg_info (root_path):
         msg_array = get_msg_info_user(user_path)
 
         sorted_msg_array = sorted(msg_array, cmp = compare)
-            
+
+        for msg in sorted_msg_array:
+            filter.filter(msg.header_info + msg.body_info)
+        
         user_array.append(msg_array)
     return user_array
 

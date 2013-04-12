@@ -4,11 +4,6 @@ import os
 import filter
 from collections import namedtuple
 
-# root path
-root_path = '../maildir'
-
-#def comparator(msg1, msg2):
-#    t = datetime.datetime.strptime(msg1, "%a, %d %b %Y %H:%M:%S %Z")
 
 class Msg:
     def __init__(self, date_info, from_info, folder_info, header_info, body_info):
@@ -127,12 +122,19 @@ def get_msg_info (root_path):
 
             sorted_msg_array = sorted(msg_array, cmp = compare)
 
+<<<<<<< HEAD
             for msg in sorted_msg_array:
                 msg.dict_info = filter.filter(msg.header_info + msg.body_info)
                 print(msg.dict_info.items())
             user_array.append(msg_array)
+=======
+        for msg in sorted_msg_array:
+            msg.dict_info = filter.filter(msg.header_info + msg.body_info)
+        user_array.append(msg_array)
+>>>>>>> d4ae67a23ce7e22855f25d34e99642df308683e9
     return user_array
-
-get_msg_info(root_path)
-
-
+    
+if __name__ == "__main__":
+    root_path = '../maildir'
+    parse.get_msg_info(root_path)
+ 

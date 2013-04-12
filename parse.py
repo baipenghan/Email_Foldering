@@ -121,15 +121,16 @@ def get_msg_info (root_path):
     user_array = []
     
     for user in os.listdir(root_path):
-        user_path = os.path.join(root_path, user)
-        msg_array = get_msg_info_user(user_path)
+        if (user == 'farmer_d'):
+            user_path = os.path.join(root_path, user)
+            msg_array = get_msg_info_user(user_path)
 
-        sorted_msg_array = sorted(msg_array, cmp = compare)
+            sorted_msg_array = sorted(msg_array, cmp = compare)
 
-        for msg in sorted_msg_array:
-            msg.dict_info = filter.filter(msg.header_info + msg.body_info)
-            print(msg.dict_info.items())
-        user_array.append(msg_array)
+            for msg in sorted_msg_array:
+                msg.dict_info = filter.filter(msg.header_info + msg.body_info)
+                print(msg.dict_info.items())
+            user_array.append(msg_array)
     return user_array
 
 get_msg_info(root_path)

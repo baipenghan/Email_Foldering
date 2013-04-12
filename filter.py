@@ -46,7 +46,7 @@ def filter(content):
     
     '''
     
-    print word_dic
+    return word_dic
     
 if __name__ == "__main__":
     filter('/Users/taurus/Documents/CPSC540/preschedule/1')

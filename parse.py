@@ -5,7 +5,7 @@ import filter
 from collections import namedtuple
 
 # root path
-root_path = '..\enron_mail_20110402\maildir'
+root_path = '../maildir'
 
 #def comparator(msg1, msg2):
 #    t = datetime.datetime.strptime(msg1, "%a, %d %b %Y %H:%M:%S %Z")
@@ -17,13 +17,7 @@ class Msg:
         self.folder_info = folder_info
         self.header_info = header_info
         self.body_info = body_info
-
-class Msg_feature:
-    def __init__(self, date_info, from_info, folder_info, dictionary_info):
-        self.date_info = date_info
-        self.from_info = from_info
-        self.folder_info = folder_info
-        self.dictionary_info = dictionary_info
+        self.dict_info = []
 
 # check if time is legal, only for testing
 def check_time(time_list):
@@ -133,8 +127,8 @@ def get_msg_info (root_path):
         sorted_msg_array = sorted(msg_array, cmp = compare)
 
         for msg in sorted_msg_array:
-            filter.filter(msg.header_info + msg.body_info)
-        
+            msg.dict_info = filter.filter(msg.header_info + msg.body_info)
+            print(msg.dict_info.items())
         user_array.append(msg_array)
     return user_array
 

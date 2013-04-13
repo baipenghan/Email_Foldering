@@ -122,16 +122,15 @@ def get_msg_info (root_path):
 
             sorted_msg_array = sorted(msg_array, cmp = compare)
 
-<<<<<<< HEAD
+
             for msg in sorted_msg_array:
                 msg.dict_info = filter.filter(msg.header_info + msg.body_info)
                 print(msg.dict_info.items())
             user_array.append(msg_array)
-=======
-        for msg in sorted_msg_array:
-            msg.dict_info = filter.filter(msg.header_info + msg.body_info)
-        user_array.append(msg_array)
->>>>>>> d4ae67a23ce7e22855f25d34e99642df308683e9
+
+            for msg in sorted_msg_array:
+                msg.dict_info = filter.filter(msg.header_info + msg.body_info)
+            user_array.append(msg_array)
     return user_array
     
 if __name__ == "__main__":

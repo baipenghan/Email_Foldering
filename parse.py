@@ -116,7 +116,7 @@ def get_msg_info (root_path):
     user_array = []
     
     for user in os.listdir(root_path):
-        if (user == 'farmer_d'):
+        if (user == 'farmer-d'):
             user_path = os.path.join(root_path, user)
             msg_array = get_msg_info_user(user_path)
 
@@ -125,15 +125,11 @@ def get_msg_info (root_path):
 
             for msg in sorted_msg_array:
                 msg.dict_info = filter.filter(msg.header_info + msg.body_info)
-                print(msg.dict_info.items())
             user_array.append(msg_array)
 
-            for msg in sorted_msg_array:
-                msg.dict_info = filter.filter(msg.header_info + msg.body_info)
-            user_array.append(msg_array)
     return user_array
     
 if __name__ == "__main__":
     root_path = '../maildir'
-    parse.get_msg_info(root_path)
+    get_msg_info(root_path)
  
